@@ -8,7 +8,7 @@ const db = require('./src/utils/database/database');
 // const dotenv = require('dotenv');
 db.connectDb();
 const app = express();
-const PORT = process.env.PORT | 6000;
+const PORT = process.env.PORT || 6000;
 
 
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 
 //la sesion tiene que ir antes de inicializar passpor y despues de express.json
 app.use(session({
-    secret: 'estasqueteladigo6',
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {
